@@ -16,7 +16,7 @@ This includes trying to write in Haskell some of the [examples and exercices in 
 
 ## Questions
 
-- [x] *I wrote this to learn:*
+- [x] *I typed this in to learn:*
 
 	```haskell
 	singletons
@@ -52,6 +52,6 @@ This includes trying to write in Haskell some of the [examples and exercices in 
 
 - [x] *we define Vect(or) purely for learning fun (you should certainly prefer using the packages given below), but are there already packages for such kinds of structures?*
 
-  &rightarrow; yes, for example in package [`sized-vector`](https://github.com/konn/sized-vector) (deprecated) and in package [`sized`](https://github.com/konn/sized)(replacement)
+  &rightarrow; yes, for example in package [`sized-vector`](https://hackage.haskell.org/package/sized-vector) (deprecated) and in package [`sized`](https://hackage.haskell.org/package/sized)(replacement)
   
   &rightarrow; but there are several others too, possibly not relying on the `singletons` package and possibly with less dependencies or Haskell extensions required, e.g., package [`vec`](https://hackage.haskell.org/package/vec) or package [`vector-sized`](https://hackage.haskell.org/package/vector-sized).
