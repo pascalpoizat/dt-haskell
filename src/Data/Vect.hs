@@ -42,9 +42,15 @@ where
 
 import           Data.Kind         (Type)
 import           Data.Type.Natural
-import           Prelude           hiding (concat, head, init, last, length,
-                                    map, replicate, tail, unzip, zipWith,
-                                    zipWith3, (++))
+import           Data.Type.Ordinal
+import           Prelude           hiding (init, last, length, map, replicate,
+                                    unzip, zipWith, zipWith3, (++))
+
+
+-- we define a synonym for Fin, but:
+-- for FZ we have to use OZ, and
+-- for FS we have to use OS
+type Fin = Ordinal
 
 data Vect :: Nat -> Type -> Type where
   Nil :: Vect Z a
@@ -215,21 +221,21 @@ foldl1 f (a :> v) = foldl f a v
 --
 
 elemBy :: (a -> a -> Bool) -> a -> Vect n a -> Bool
-elemBy _ _ Nil = False
+elemBy _ _ Nil      = False
 elemBy p e (a :> v) = p e a || elemBy p e v
 
 elem :: Eq a => a -> Vect n a -> Bool
 elem = elemBy (==)
 
 lookupBy :: (key -> key -> Bool) -> key -> Vect n (key, val) -> Maybe val
-lookupBy _ _ Nil = Nothing
+lookupBy _ _ Nil           = Nothing
 lookupBy p e ((l, r) :> v) = if p e l then Just r else lookupBy p e v
 
 lookup :: Eq key => key -> Vect n (key, val) -> Maybe val
 lookup = lookupBy (==)
 
 hasAnyBy :: (a -> a -> Bool) -> Vect n a -> Vect m a -> Bool
-hasAnyBy _ _ Nil = False
+hasAnyBy _ _ Nil          = False
 hasAnyBy p elems (a :> v) = elemBy p a elems || hasAnyBy p elems v
 
 hasAny :: Eq a => Vect n a -> Vect m a -> Bool
@@ -239,12 +245,11 @@ hasAny = hasAnyBy (==)
 -- searching with a predicate
 --
 
-
+-- FIXME: I AM HERE
 
 --
 -- sorting
 --
-
 sort :: Ord a => Vect n a -> Vect n a
 sort Nil      = Nil
 sort (a :> v) = let sortedv = sort v in insert a sortedv

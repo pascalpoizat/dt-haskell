@@ -20,6 +20,7 @@
 {-# LANGUAGE TypeInType                #-}
 {-# LANGUAGE TypeOperators             #-}
 {-# LANGUAGE UndecidableInstances      #-}
+{-# LANGUAGE ViewPatterns              #-}
 
 module Data.Matrix
 where
