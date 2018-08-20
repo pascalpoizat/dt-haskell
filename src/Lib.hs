@@ -103,14 +103,14 @@ refuel (Bus fuel) = Bus 200
 --
 
 -- TODO: find why (a :: *) does not work
-data Vector (size :: Nat) a where
-  Nil :: Vector Z a
-  (:-) :: a -> Vector n a -> Vector (S n) a
+data Vect (size :: Nat) a where
+  Nil :: Vect Z a
+  (:-) :: a -> Vect n a -> Vect (S n) a
 infixr 5 :-
 
-deriving instance Eq a => Eq (Vector n a)
+deriving instance Eq a => Eq (Vect n a)
 
-toList :: Vector n a -> [a]
+toList :: Vect n a -> [a]
 toList Nil      = []
 toList (a :- v) = a : toList v
 
@@ -122,42 +122,42 @@ toList (a :- v) = a : toList v
 --fromList' :: SingI n => [a] -> Vector n a
 --fromList' = fromList sing
 
-instance Show a => Show (Vector n a) where
+instance Show a => Show (Vect n a) where
   showsPrec p = showsPrec p . toList
 
-append :: Vector n a -> Vector m a -> Vector (n + m) a
+append :: Vect n a -> Vect m a -> Vect (n + m) a
 append Nil v        = v
 append (a :- v1) v2 = a :- append v1 v2
 
-head :: Vector (S n) a -> a
+head :: Vect (S n) a -> a
 head (a :- v) = a
 
-tail :: Vector (S n) a -> a
+tail :: Vect (S n) a -> a
 tail (a :- v) = a
 
-replicate :: SNat n -> a -> Vector n a
+replicate :: SNat n -> a -> Vect n a
 replicate SZ _     = Nil
 replicate (SS n) a = a :- replicate n a
 
-zipWithSame :: (a -> b -> c) -> Vector n a -> Vector n b -> Vector n c
+zipWithSame :: (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c
 zipWithSame f Nil Nil             = Nil
 zipWithSame f (a :- v1) (b :- v2) = f a b :- zipWithSame f v1 v2
 
-zipWith :: (a -> b -> c) -> Vector n a -> Vector m b -> Vector (Min n m) c
+zipWith :: (a -> b -> c) -> Vect n a -> Vect m b -> Vect (Min n m) c
 zipWith f Nil Nil             = Nil
 zipWith f Nil (b :- v)        = Nil
 zipWith f (a :- v) Nil        = Nil
 zipWith f (a :- v1) (b :- v2) = f a b :- zipWith f v1 v2
 
-zipSame :: Vector n a -> Vector n b -> Vector n (a, b)
+zipSame :: Vect n a -> Vect n b -> Vect n (a, b)
 zipSame = zipWithSame (,)
 
-zip :: Vector n a -> Vector m b -> Vector (Min n m) (a, b)
+zip :: Vect n a -> Vect m b -> Vect (Min n m) (a, b)
 zip = zipWith (,)
 
-type Matrix n m a = Vector n (Vector m a)
+type Matrix n m a = Vect n (Vect m a)
 
-type IVect3 = Vector N3 Integer
+type IVect3 = Vect N3 Integer
 
 aV1 :: IVect3
 aV1 = 1 :- 2 :- 3 :- Nil
