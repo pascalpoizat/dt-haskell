@@ -1,19 +1,21 @@
+{-# LANGUAGE ConstraintKinds           #-}
 {-# LANGUAGE DataKinds                 #-}
--- {-# LANGUAGE DefaultSignatures         #-}
+{-# LANGUAGE DefaultSignatures         #-}
 {-# LANGUAGE EmptyCase                 #-}
 {-# LANGUAGE ExistentialQuantification #-}
 {-# LANGUAGE FlexibleContexts          #-}
 {-# LANGUAGE FlexibleInstances         #-}
 {-# LANGUAGE GADTs                     #-}
 {-# LANGUAGE InstanceSigs              #-}
--- {-# LANGUAGE KindSignatures            #-}
+{-# LANGUAGE KindSignatures            #-}
 {-# LANGUAGE MultiParamTypeClasses     #-}
 {-# LANGUAGE NoImplicitPrelude         #-}
 {-# LANGUAGE PolyKinds                 #-}
 {-# LANGUAGE RankNTypes                #-}
 {-# LANGUAGE ScopedTypeVariables       #-}
--- {-# LANGUAGE StandaloneDeriving        #-}
+{-# LANGUAGE StandaloneDeriving        #-}
 -- {-# LANGUAGE TemplateHaskell           #-}
+{-# LANGUAGE TypeApplications          #-}
 {-# LANGUAGE TypeFamilies              #-}
 {-# LANGUAGE TypeInType                #-}
 {-# LANGUAGE TypeOperators             #-}
@@ -23,8 +25,15 @@ module Data.Matrix
 where
 
 import           Data.Vect
+import           Prelude           (Num, (+))
 
 type Matrix n m a = Vect n (Vect m a)
+
+addVector :: Num a => Vect n a -> Vect n a -> Vect n a
+addVector = zipWith (+)
+
+add :: Num a => Matrix n m a -> Matrix n m a -> Matrix n m a
+add = zipWith addVector
 
 {-
 testMatrix :: Matrix n2 n3 Double
