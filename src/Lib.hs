@@ -68,6 +68,7 @@ singletons
 
 --
 -- from Idris book, chapter 4
+-- see https://github.com/pascalpoizat/idris-book/blob/master/chapter4/Vehicle.idr
 --
 
 data PowerSource = Petrol | Pedal | Electric
