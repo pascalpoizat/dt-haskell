@@ -4,7 +4,7 @@ import Lib
 
 main :: IO ()
 main = do
-  print v1
-  print v2
-  print $ append v1 v2
+  print aV1
+  print aV2
+  print $ append aV1 aV2
 
