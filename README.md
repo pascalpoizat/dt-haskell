@@ -15,7 +15,7 @@ Not to be lost with extensions (`{-# LANGUAGE xxx #-}` or `-Xxxx`) : [GHC 8.4.3 
 - [Basic Type Level Programming in Haskell](http://www.parsonsmatt.org/2017/04/26/basic_type_level_programming_in_haskell.html), by M. Parsons (2017)
 - [Dependent Types in Haskell, Part I](https://www.schoolofhaskell.com/user/konn/prove-your-haskell-for-great-safety/dependent-types-in-haskell) by H. IShii (2014)
 - [singletons 2.4 documentation on hackage](https://hackage.haskell.org/package/singletons) by R. Eisenberg and J. Stolarek (2018)
-- [Adding dependent types to Haskell] (https://ghc.haskell.org/trac/ghc/wiki/DependentHaskell), a page of the GHC trac with information and references.
+- [Adding dependent types to Haskell](https://ghc.haskell.org/trac/ghc/wiki/DependentHaskell), a page of the GHC trac with information and references.
 
 ### Videos
 
