@@ -1,4 +1,6 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE DataKinds #-}
+
 module Main where
 
 import           Data.Type.Natural
@@ -14,10 +16,10 @@ type IVect n = Vect n Integer
 type IVect3 = IVect N3
 
 aV1 :: IVect3
-aV1 = 1 :- 2 :- 3 :- Nil
+aV1 = 1 :> 2 :> 3 :> Nil
 
 aV2 :: IVect3
-aV2 = 4 :- 5 :- 6 :- Nil
+aV2 = 4 :> 5 :> 6 :> Nil
 
 aV3 :: IVect3
 aV3 = replicate sN3 0
@@ -29,7 +31,7 @@ aV5 :: Maybe (IVect N6)
 aV5 = fromList' [1,1,3,4,7,11]
 
 testAppend :: IO ()
-testAppend = print $ append aV2 aV1
+testAppend = print $ aV2 ++ aV1
 
 testFromList :: IO ()
 testFromList = case aV5 of
@@ -47,10 +49,13 @@ testReplicate = do
   print aV4
 
 testMap :: IO ()
-testMap = print $ (+ 1) <$> append aV2 aV1
+testMap = print $ (+ 1) <$> aV2 ++ aV1
 
 testSort :: IO ()
-testSort = print $ sort $ append aV2 aV1
+testSort = print $ sort $ aV2 ++ aV1
+
+testZip :: IO ()
+testZip = print $ zipWith (+) aV1 aV2
 
 test :: String -> IO () -> IO ()
 test what f = putStrLn what >>= pure f
@@ -63,3 +68,4 @@ main = do
   test "fromList" testFromList
   test "map" testMap
   test "sort" testSort
+  test "zip" testZip

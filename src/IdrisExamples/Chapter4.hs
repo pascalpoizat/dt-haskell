@@ -22,13 +22,10 @@
 module IdrisExamples.Chapter4
 where
 
-import           Data.Singletons.TH
-import           Data.Type.Natural
-import           Data.Vect
+import           Data.Type.Natural -- re-exports Data.Singletons
 
 --
--- from Idris book, chapter 4
--- see https://github.com/pascalpoizat/idris-book/blob/master/chapter4/Vehicle.idr
+--
 --
 
 data PowerSource = Petrol | Pedal | Electric
@@ -46,14 +43,14 @@ wheels :: Vehicle power -> Nat
 wheels Unicycle          = 1
 wheels Bicycle           = 2
 wheels (Motorcycle fuel) = 2
-wheels (Car fuel)        = 4
-wheels (Bus fuel)        = 4
+wheels (Car        fuel) = 4
+wheels (Bus        fuel) = 4
 wheels Tram              = 10
 wheels ElectricCar       = 4
 
 refuel :: Vehicle Petrol -> Vehicle Petrol
 refuel (Motorcycle fuel) = Motorcycle 50
-refuel (Car fuel)        = Car 100
-refuel (Bus fuel)        = Bus 200
+refuel (Car        fuel) = Car 100
+refuel (Bus        fuel) = Bus 200
 
 -- TODO: DataStore.idr

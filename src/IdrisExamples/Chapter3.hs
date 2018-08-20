@@ -21,3 +21,14 @@
 
 module IdrisExamples.Chapter3
 where
+
+import           Data.Vect
+import           Prelude   as P (Int, String, length)
+
+--
+-- see also Data.Vect.map and Data.Matrix
+--
+
+allLengths :: Vect n String -> Vect n Int
+allLengths Nil      = Nil
+allLengths (s :> v) = P.length s :> allLengths v
