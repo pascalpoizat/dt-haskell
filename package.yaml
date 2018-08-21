@@ -2,9 +2,9 @@ name:                dt-haskell
 version:             0.1.0.0
 github:              "githubuser/dt-haskell"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2018 Author name here"
+author:              "Pacal Poizat"
+maintainer:          "pascal.poizat@gmail.com"
+copyright:           "2018 Pascal Poizat"
 
 extra-source-files:
 - README.md
