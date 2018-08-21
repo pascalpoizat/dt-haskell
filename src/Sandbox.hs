@@ -22,38 +22,33 @@
 {-# LANGUAGE UndecidableInstances      #-}
 {-# LANGUAGE ViewPatterns              #-}
 
-module IdrisExamples.Chapter4
+--
+-- a sandbox
+--
+
+--
+-- watching:
+-- https://www.reddit.com/r/haskell/comments/8lkv6l/richard_eisenberg_speaks_on_dependent_types/
+--
+
+module Sandbox
 where
 
-import           Data.Type.Natural -- re-exports Data.Singletons
+import           Data.Kind (Type)
 
 --
+-- from
+-- https://www.reddit.com/r/haskell/comments/8lkv6l/richard_eisenberg_speaks_on_dependent_types/
 --
---
 
-data PowerSource = Petrol | Pedal | Electric
+data Nat = Zero | Succ Nat
 
-data Vehicle (powersource :: PowerSource) where
-  Unicycle :: Vehicle Pedal
-  Bicycle :: Vehicle Pedal
-  Motorcycle :: Nat -> Vehicle Petrol
-  Car :: Nat -> Vehicle Petrol
-  Bus :: Nat -> Vehicle Petrol
-  Tram :: Vehicle Electric
-  ElectricCar :: Vehicle Electric
+data Fin :: Nat -> Type where
+  FZ :: Fin (Succ n)
+  FS :: Fin n -> Fin (Succ n)
 
-wheels :: Vehicle power -> Nat
-wheels Unicycle          = 1
-wheels Bicycle           = 2
-wheels (Motorcycle fuel) = 2
-wheels (Car        fuel) = 4
-wheels (Bus        fuel) = 4
-wheels Tram              = 10
-wheels ElectricCar       = 4
-
-refuel :: Vehicle Petrol -> Vehicle Petrol
-refuel (Motorcycle fuel) = Motorcycle 50
-refuel (Car        fuel) = Car 100
-refuel (Bus        fuel) = Bus 200
-
--- TODO: DataStore.idr
+data UExp (n :: Nat)
+  = UVar (Fin n)
+  | ULam Type (UExp (Succ n))
+  | UApp (UExp n) (UExp n)
+  | ULet (UExp n) (UExp (Succ n))
