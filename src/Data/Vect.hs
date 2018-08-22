@@ -32,6 +32,10 @@
 -- All credit should go to the authors of the above references (& Idris)
 -- as my work was only in the porting.
 --
+-- **VERY ONGOING WORK**
+-- since I am reading a lot for find the good starting point
+-- for the time being, rather look at Sandboxes
+--
 -- differences wrt Idris:
 --    missing: a lot, see TODOs
 --    different: fromList, fromList', replicate
