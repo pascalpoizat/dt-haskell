@@ -134,16 +134,16 @@ castWith :: (a :~:b) -> a -> b
 castWith Refl x = x
 -}
 
-x :: Int
-x = 1
+xx :: Int
+xx = 1
 
 -- OK
-y :: Int
-y = castWith Refl x
+yy :: Int
+yy = castWith Refl xx
 
 -- KO: Couldn't match type ‘Int’ with ‘Integer’
--- z :: Integer
--- z = castWith Refl x
+-- zz :: Integer
+-- zz = castWith Refl xx
 
 -- higher rank types cannot be inferred and require a signature
 -- requires RankNTypes
