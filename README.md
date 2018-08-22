@@ -5,7 +5,7 @@ Some experiments with dependent types in Haskell.
 
 This includes trying to write in Haskell some of the [examples and exercices in the Idris book](https://github.com/pascalpoizat/idris-book).
 
-**Remark:** this is a very ongoing work. The current entry point is [`Sandboxes.RAE1`](src/Sandboxes/RAE1.hs).
+**Remark:** this is a very ongoing work. The current entry point is [`Sandboxes.RAE1`](src/Sandboxes/RAE1).
 
 ## Contents
 
@@ -25,7 +25,7 @@ To make experiments we use different sandboxes based on different approaches.
 
 - **RAEx** is R. Eisenberg line of work
 
-	- **RAE1** based on [R3] &leftarrow; current work, see [`Sandboxes.RAE1`](src/Sandboxes/RAE1.hs)
+	- **RAE1** based on [R3] &leftarrow; current work, see [`Sandboxes.RAE1`](src/Sandboxes/RAE1)
 	- **RAE2** based on [V1]
 	
 ## References

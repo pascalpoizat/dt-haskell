@@ -30,7 +30,7 @@ import Data.Kind (Type)
 --
 -- **VERY ONGOING WORK**
 -- since I am reading a lot for find the good starting point
--- for the time being, rather look at Sandboxes.RAE1
+-- for the time being, rather look at Sandboxes/RAE1
 --
 
 --

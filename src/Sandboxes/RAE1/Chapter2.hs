@@ -25,7 +25,7 @@
 -- {-# LANGUAGE UndecidableInstances      #-}
 {-# OPTIONS_GHC -fprint-explicit-kinds #-}
 
-module Sandboxes.RAE1
+module Sandboxes.RAE1.Chapter2
 where
 
 import           Data.Kind                (Constraint)
