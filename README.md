@@ -89,11 +89,7 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 		```
 	- there are restrictions on things being promoted (see doc) but `TypeInType` relaxes some of these restrictions
 	- quote marks can be removed when non ambiguous (not recommended)
-	- use `-Wunticked-promoted-constructors` to signal forgotter quote marks
-
-- **ExistentialQuantification**
-
-	TODO:
+	- `-Wunticked-promoted-constructors` to signal forgotten quote marks
 
 - **ExplicitForAll**
  
@@ -115,11 +111,7 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 
 	- type class instances with arbitrary nested types in instance head
 
-- **FunctionalDependencies**
-
-	TODO:
-
-- **GADTs** (&Rightarrow; *MonoLocalBinds*, *GADTSyntax*)
+- **GADTs** (&Rightarrow; *GADTSyntax*, *MonoLocalBinds*)
 
 	- generalise ordinary algebraic data types
      	(constructors with richer return types)
@@ -188,17 +180,17 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 		```
 	- use `-fprint-explicit-kinds` (and possibly other pretty-printing options) for clearer error outputs
 	- `TypeInType` can be seen as an extension of `PolyKinds`
-		(indeed `TypeInType` &RightArrow; `PolyKinds`),
+		(indeed `TypeInType` &Rightarrow; `PolyKinds`),
   	both co-exist but in case `TypeInType` is used
 		consider using `-dcore-lint` too.
 
-- **RankNTypes** (&RightArrow; *ExplicitForall*)
+- **RankNTypes** (&Rightarrow; *ExplicitForall*)
 
 	- higher rank types
 	- `forall`s can be nested arbitrarily deep in function arrows
 	- type signatures (but not only) can help in making type inference possible for arbitrary-rank types
 
-- **ScopedTypeVariables** (&RightArrow; *ExplicitForAll*)
+- **ScopedTypeVariables** (&Rightarrow; *ExplicitForAll*)
 
 	- lexical scoping of type variables explicitely introduced with `forall`
 
@@ -210,17 +202,28 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 	- can be used to derive instances to exotic types (e.g., *GADTs*)
 	- errors can come from generated code
 
-- **TypeFamilies**
+- **TypeFamilies** (&Rightarrow; *ExplicitNamespaces*, *KindSignatures*, *MonoLocalBinds*)
 
-	- TODO:
-	- `DataKinds` is useful with `TypeFamilies`
+	- data families and indexed types
+	- facilitate type-level programming
+	- alternative to functional dependencies (more functional style vs more relational style)
+	- type families are type constructors that represent sets of types
+	- two sorts: data families and synonym families, that are the indexed variant of algebraic data types and type synonyms.
+	- data families can appear at top level (more general) or in type classes (better structuring, warnings if missing instances)
+	- synonym families can appear at the top level (more general) as open families or closed families (having a `where` clause), or in type classes called associated type synonyms (better structuring, warnings if missing instances)
+	- type families are concerned by compatibility rules
+	- data instances are instances of data families
+	- type instances are instances of synonym families
+	- instances can have `deriving` clauses
+	- `-Wunused-type-patterns` to signal variables in left hand side patterns not used in right hand side
+	- `DataKinds` and `UndecidableInstances` are useful with `TypeFamilies`
+	- a lot more things ...
 
-
-- **TypeInType** (&Rightarrow; *PolyKinds*, *DataKinds*, *KindSignatures*)
+- **TypeInType** (&Rightarrow; *DataKinds*, *KindSignatures*, *PolyKinds*)
 
 	- see `PolyKinds`
 	- `TypeInType` can be seen as an extension of `PolyKinds`
-		(indeed `TypeInType` &RightArrow; `PolyKinds`),
+		(indeed `TypeInType` &Rightarrow; `PolyKinds`),
   	both co-exist but in case `TypeInType` is used
 		consider using `-dcore-lint` too.
 	- kinds can be as intricate as types: explicit quantification over kind variables, higher-rank kinds, type synonyms and families in kinds, among other features
@@ -229,10 +232,10 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 
 	- type class instances for type synonyms
 
-- **TypeOperators** (&RightArrow; *ExplicitNamespaces*)
+- **TypeOperators** (&Rightarrow; *ExplicitNamespaces*)
 
 	- definition and use of types with operator names
-	- possibly ambiguity in `import` resolved using *ExplicitNamespaces* (see the corresponding entry)
+	- possibly ambiguity in module import/export lists resolved using *ExplicitNamespaces* (see the corresponding entry)
 
 - **UndecidableInstances**
  
