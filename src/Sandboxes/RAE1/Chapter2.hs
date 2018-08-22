@@ -7,8 +7,9 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeFamilies        #-}
 {-# LANGUAGE TypeOperators       #-}
-{-# OPTIONS_GHC -fprint-explicit-kinds #-}
+{-# OPTIONS_GHC -fprint-explicit-kinds           #-}
 {-# OPTIONS_GHC -Wunticked-promoted-constructors #-}
+{-# OPTIONS_GHC -Wunused-type-patterns           #-}
 
 module Sandboxes.RAE1.Chapter2
 where
@@ -98,7 +99,7 @@ type family (a :: Nat) + (b :: Nat) where
 -- -fprint-explicit-kinds is used to make GHC show invisible parameters corresponding to kind arguments
 type family Length (list :: [k]) :: Nat where
   Length '[] = 'Zero
-  Length (x ': xs) = 'Succ (Length xs)
+  Length (_ : xs) = 'Succ (Length xs)
 
 -- writing this requires
 -- - GADTs or GADTSyntax + ExistentialQuantification
