@@ -48,10 +48,10 @@ To make experiments we use different sandboxes based on different approaches.
 	by H. Ishii (2018-07-28)
 - [L3] [`equational-reasoning-0.5.1.0`](http://hackage.haskell.org/package/equational-reasoning-0.5.1.0)
 	by H. Ishii (2018-03-09)
-- [L4] [`sized-vector-??.??.??.??`](https://hackage.haskell.org/package/sized-vector)
-	by ?. ?? (????-??-??)
-- [L5] [`sized-??.??.??.??`](https://hackage.haskell.org/package/sized)
-	by ?. ?? (????-??-??)
+- [L4] [`sized-vector-1.4.3.1`](https://hackage.haskell.org/package/sized-vector)
+	by H. Ishii (2016-07-27)
+- [L5] [`sized-0.3.0.0`](https://hackage.haskell.org/package/sized)
+	by H. Ishii (2018-03-18)
 
 ## Notes on GHC Extensions
 
