@@ -65,6 +65,18 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 
 	- more constraints on class methods
 
+- **ConstraintKinds**
+
+	TODO:
+
+- **DataKinds**
+
+	TODO:
+
+- **ExistentialQuantification**
+
+	TODO:
+
 - **ExplicitForAll**
  
 	- explicit universal quantification    
@@ -74,6 +86,10 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 - **FlexibleInstances** (&Rightarrow; *TypeSynonymInstances*)
 
 	- type class instances with arbitrary nested types in instance head
+
+- **FunctionalDependencies**
+
+	TODO:
 
 - **GADTs** (&Rightarrow; *MonoLocalBinds*, *GADTSyntax*)
 
@@ -117,6 +133,22 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 - **MultiParamTypeClasses** (&Rightarrow; *ConstrainedClassMethods*)
 
 	- type classes with multiple parameters
+
+- **NoImplicitPrelude**
+
+	TODO:
+
+- **PolyKinds**
+
+	TODO:
+
+- **RankNTypes**
+
+	TODO:
+
+- **ScopedTypeVariables**
+
+	TODO:
 
 - **StandaloneDeriving**
 
