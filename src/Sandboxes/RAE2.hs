@@ -1,31 +1,37 @@
--- {-# LANGUAGE ConstraintKinds           #-}
--- {-# LANGUAGE DataKinds                 #-}
+{-# LANGUAGE ConstraintKinds     #-}
+{-# LANGUAGE DataKinds           #-}
 -- {-# LANGUAGE DefaultSignatures         #-}
 -- {-# LANGUAGE EmptyCase                 #-}
-{-# LANGUAGE ExplicitForAll            #-}
 -- {-# LANGUAGE ExistentialQuantification #-}
+-- {-# LANGUAGE ExplicitForAll            #-}
 -- {-# LANGUAGE FlexibleContexts          #-}
-{-# LANGUAGE FlexibleInstances         #-}
-{-# LANGUAGE GADTs                     #-}
+-- {-# LANGUAGE FlexibleInstances         #-}
+-- {-# LANGUAGE FunctionalDependencies    #-}
+-- {-# LANGUAGE GADTSyntax                #-}
+{-# LANGUAGE GADTs               #-}
 -- {-# LANGUAGE InstanceSigs              #-}
 -- {-# LANGUAGE KindSignatures            #-}
-{-# LANGUAGE MultiParamTypeClasses     #-}
--- {-# LANGUAGE NoImplicitPrelude         #-}
--- {-# LANGUAGE PolyKinds                 #-}
--- {-# LANGUAGE RankNTypes                #-}
--- {-# LANGUAGE ScopedTypeVariables       #-}
-{-# LANGUAGE StandaloneDeriving        #-}
+-- {-# LANGUAGE MultiParamTypeClasses     #-}
+{-# LANGUAGE NoImplicitPrelude   #-}
+{-# LANGUAGE PolyKinds           #-}
+{-# LANGUAGE RankNTypes          #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE StandaloneDeriving  #-}
 -- {-# LANGUAGE TemplateHaskell           #-}
 -- {-# LANGUAGE TypeApplications          #-}
-{-# LANGUAGE TypeFamilies              #-}
-{-# LANGUAGE TypeInType                #-}
-{-# LANGUAGE TypeOperators             #-}
-{-# LANGUAGE UndecidableInstances      #-}
+{-# LANGUAGE TypeFamilies        #-}
+-- {-# LANGUAGE TypeInType                #-}
+{-# LANGUAGE TypeOperators       #-}
+-- {-# LANGUAGE UndecidableInstances      #-}
+{-# OPTIONS_GHC -fprint-explicit-kinds #-}
+{-# OPTIONS_GHC -Wunticked-promoted-constructors #-}
+-- {-# OPTIONS_GHC -dcore-lint #-}
 
 module Sandboxes.RAE2
 where
 
-import Data.Kind (Type)
+import           Data.Kind (Type)
+import           Prelude
 
 --
 -- **VERY ONGOING WORK**
@@ -63,24 +69,24 @@ data Nat = Zero | Succ Nat
   deriving Show
 
 type family n + m where
-  Zero   + m = m
-  Succ n + m = Succ (n + m)
+  'Zero   + m = m
+  'Succ n + m = 'Succ (n + m)
 
 data Fin :: Nat -> Type where
-  FZ :: Fin (Succ n)
-  FS :: Fin n -> Fin (Succ n)
+  FZ :: Fin ('Succ n)
+  FS :: Fin n -> Fin ('Succ n)
 
 deriving instance Show (Fin n)
 
 finToInt :: Fin n -> Int
-finToInt FZ = 0
+finToInt FZ     = 0
 finToInt (FS n) = 1 + finToInt n
-  
+
 -- we can use one of the two (we will cope to the first one, as in RE)
 data Vec :: Type -> Nat -> Type where
 -- data Vec (elem :: Type) (len :: Nat) where
-  VNil :: Vec a Zero
-  (:>) :: a -> Vec a n -> Vec a (Succ n)
+  VNil :: Vec a 'Zero
+  (:>) :: a -> Vec a n -> Vec a ('Succ n)
 infixr 5 :>
 
 deriving instance Show a => Show (Vec a n)
@@ -96,11 +102,11 @@ elemIndex x (y :> ys)
 --
 
 append :: Vec a n -> Vec a m -> Vec a (n + m)
-append VNil ys = ys
+append VNil ys      = ys
 append (x :> xs) ys = x :> append xs ys
 
-type Nat3 = (Succ (Succ (Succ Zero)))
-type Nat6 = (Succ (Succ (Succ Nat3)))
+type Nat3 = ('Succ ('Succ ('Succ 'Zero)))
+type Nat6 = ('Succ ('Succ ('Succ Nat3)))
 type VecInt n = Vec Int n
 type VectInt3 = VecInt Nat3
 type VectInt6 = VecInt Nat6

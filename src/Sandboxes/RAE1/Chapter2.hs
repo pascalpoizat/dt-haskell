@@ -1,29 +1,14 @@
 {-# LANGUAGE ConstraintKinds     #-}
 {-# LANGUAGE DataKinds           #-}
--- {-# LANGUAGE DefaultSignatures         #-}
--- {-# LANGUAGE EmptyCase                 #-}
--- {-# LANGUAGE ExistentialQuantification #-}
--- {-# LANGUAGE ExplicitForAll            #-}
--- {-# LANGUAGE FlexibleContexts          #-}
--- {-# LANGUAGE FlexibleInstances         #-}
--- {-# LANGUAGE FunctionalDependencies    #-}
--- {-# LANGUAGE GADTSyntax                #-}
 {-# LANGUAGE GADTs               #-}
--- {-# LANGUAGE InstanceSigs              #-}
--- {-# LANGUAGE KindSignatures            #-}
--- {-# LANGUAGE MultiParamTypeClasses     #-}
 {-# LANGUAGE NoImplicitPrelude   #-}
 {-# LANGUAGE PolyKinds           #-}
 {-# LANGUAGE RankNTypes          #-}
 {-# LANGUAGE ScopedTypeVariables #-}
--- {-# LANGUAGE StandaloneDeriving        #-}
--- {-# LANGUAGE TemplateHaskell           #-}
--- {-# LANGUAGE TypeApplications          #-}
 {-# LANGUAGE TypeFamilies        #-}
--- {-# LANGUAGE TypeInType                #-}
 {-# LANGUAGE TypeOperators       #-}
--- {-# LANGUAGE UndecidableInstances      #-}
 {-# OPTIONS_GHC -fprint-explicit-kinds #-}
+{-# OPTIONS_GHC -Wunticked-promoted-constructors #-}
 
 module Sandboxes.RAE1.Chapter2
 where
@@ -50,7 +35,7 @@ import           Prelude                  hiding ((+))
 -- - PolyKinds
 -- - GADTs (or GADTSyntax + ExistentialQuantification)
 -- - ConstraintKinds
--- - import Data.Kind (for Constraint)
+-- - import  Constraint from GHC.Exts or Data.Kind
 -- - import Data.Type.Equality (for propositional equality, or write own defs)
 -- - RankNTypes
 -- - ScopedTypeVariables
@@ -118,7 +103,7 @@ type family Length (list :: [k]) :: Nat where
 -- writing this requires
 -- - GADTs or GADTSyntax + ExistentialQuantification
 -- - ConstraintKinds
--- - import Data.Kind (for Constraint)
+-- - import  Constraint from GHC.Exts or Data.Kind
 data Some :: (* -> Constraint) -> * where
   Some :: c a => a -> Some c
 
@@ -214,4 +199,4 @@ type instance Plus' ('Succ n) m = 'Succ (Plus' n m)
 
 testcase :: IO ()
 testcase =
-  print "RAE1 passed"
+  print "RAE1, chapter 2 passed"
