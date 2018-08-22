@@ -67,11 +67,29 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 
 - **ConstraintKinds**
 
-	TODO:
+	- types of kinds `Constraint` can be used in contexts
+	- `Constraint` can be imported from `GHC.Exts` or `Data.Kind`
+	- allows type constraint synonyms
+	- in case of exotic constraints, use with `UndecidableInstances`
 
 - **DataKinds**
 
-	TODO:
+	- promotion of data types at the kind level
+	- useful for advanced type system features such as `TypeFamilies` and `GADTs`
+	- example, the following datatype:
+		```haskell
+		data Nat = Zero | Succ Nat
+		```
+		will yield a new `Nat` kind and two new type constructors, `'Zero` and `'Succ`:
+		```haskell
+		data Nat = Zero | Succ Nat
+		Nat :: *
+		'Zero :: Nat
+		'Succ :: Nat -> Nat
+		```
+	- there are restrictions on things being promoted (see doc) but `TypeInType` relaxes some of these restrictions
+	- quote marks can be removed when non ambiguous (not recommended)
+	- use `-Wunticked-promoted-constructors` to signal forgotter quote marks
 
 - **ExistentialQuantification**
 
@@ -82,6 +100,16 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 	- explicit universal quantification    
 	- may bring type variables into scope
 	- `-Wunused-foralls` to warn about unused variables
+
+- **ExplicitNamespaces**
+
+	- explicit namespaces in module import/export lists
+		```haskell
+		import M ((+))                -- function
+		import M (type (+))           -- type constructor
+		module M ((+)) where ...      -- function
+		module M (type (+)) where ... -- type
+		```
 
 - **FlexibleInstances** (&Rightarrow; *TypeSynonymInstances*)
 
@@ -95,7 +123,9 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 
 	- generalise ordinary algebraic data types
      	(constructors with richer return types)
-	- refinement with pattern matching
+	- pattern matching cause type refinement
+	- refinement done based on user-supplied type annotations
+	- `DataKinds` is useful with `GADTs`
 
 - **GADTSyntax**
 
@@ -125,6 +155,11 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 	- possible type class constraints for constructors (possibly all different)
 	- ... and much more things
 
+- **KindSignatures**
+
+	- explicit kind signatures on type variables
+	- use spacing to avoid parse errors (e.g., not `::*->*` but `:: * -> *`)
+
 - **MonoLocalBinds**
 
 	- related to type inference predictability
@@ -136,19 +171,36 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 
 - **NoImplicitPrelude**
 
-	TODO:
+	- no `Prelude` import by default
+	- enables to use personal preludes (that should not be named `Prelude`)
 
-- **PolyKinds**
+- **PolyKinds** (&Rightarrow; *KindSignatures*)
 
-	TODO:
+	- kind polymorphic types
+	- infer most general kinds for declarations
+	- precision using user-given kind signatures (**KindSignatures**), typically interesting for families (**TypeFamilies**)
+		```haskell
+		type family F1 a                -- F1 :: * -> *
+		type family F2 (a :: k)         -- F2 :: forall k. k -> *
+		type family F3 a :: k           -- F3 :: forall k. * -> k
+		type family F4 (a :: k1) :: k2  -- F4 :: forall k1 k2. k1 -> k2
+		-- from https://downloads.haskell.org/%7Eghc/8.4.3/docs/html/users_guide/glasgow_exts.html
+		```
+	- use `-fprint-explicit-kinds` (and possibly other pretty-printing options) for clearer error outputs
+	- `TypeInType` can be seen as an extension of `PolyKinds`
+		(indeed `TypeInType` &RightArrow; `PolyKinds`),
+  	both co-exist but in case `TypeInType` is used
+		consider using `-dcore-lint` too.
 
-- **RankNTypes**
+- **RankNTypes** (&RightArrow; *ExplicitForall*)
 
-	TODO:
+	- higher rank types
+	- `forall`s can be nested arbitrarily deep in function arrows
+	- type signatures (but not only) can help in making type inference possible for arbitrary-rank types
 
-- **ScopedTypeVariables**
+- **ScopedTypeVariables** (&RightArrow; *ExplicitForAll*)
 
-	TODO:
+	- lexical scoping of type variables explicitely introduced with `forall`
 
 - **StandaloneDeriving**
 
@@ -160,19 +212,27 @@ This information is mostly taken from [GHC 8.4.3 language features](https://down
 
 - **TypeFamilies**
 
-	TODO:
+	- TODO:
+	- `DataKinds` is useful with `TypeFamilies`
 
-- **TypeInType**
 
-	TODO:
+- **TypeInType** (&Rightarrow; *PolyKinds*, *DataKinds*, *KindSignatures*)
+
+	- see `PolyKinds`
+	- `TypeInType` can be seen as an extension of `PolyKinds`
+		(indeed `TypeInType` &RightArrow; `PolyKinds`),
+  	both co-exist but in case `TypeInType` is used
+		consider using `-dcore-lint` too.
+	- kinds can be as intricate as types: explicit quantification over kind variables, higher-rank kinds, type synonyms and families in kinds, among other features
 
 - **TypeSynonymInstances**
 
 	- type class instances for type synonyms
 
-- **TypeOperators**
+- **TypeOperators** (&RightArrow; *ExplicitNamespaces*)
 
-	TODO:
+	- definition and use of types with operator names
+	- possibly ambiguity in `import` resolved using *ExplicitNamespaces* (see the corresponding entry)
 
 - **UndecidableInstances**
  
