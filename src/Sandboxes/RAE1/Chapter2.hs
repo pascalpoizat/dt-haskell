@@ -214,4 +214,4 @@ type instance Plus' ('Succ n) m = 'Succ (Plus' n m)
 
 testcase :: IO ()
 testcase =
-  print "RAE1 passed"
+  print "RAE1, chapter 2 passed"
