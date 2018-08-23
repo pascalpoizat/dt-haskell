@@ -3,6 +3,7 @@
 {-# LANGUAGE DefaultSignatures         #-}
 {-# LANGUAGE EmptyCase                 #-}
 {-# LANGUAGE ExistentialQuantification #-}
+{-# LANGUAGE ExplicitNamespaces        #-}
 {-# LANGUAGE FlexibleContexts          #-}
 {-# LANGUAGE FlexibleInstances         #-}
 {-# LANGUAGE GADTs                     #-}
@@ -135,5 +136,6 @@ instance Typeable Nat where
 
 testcase :: IO ()
 testcase = do
-  print "chapter 7 inconclusive"
+  putStrLn "\n*** chapter 7\n"
+  putStrLn "\nchapter 7 inconclusive"
 

@@ -201,5 +201,6 @@ type instance Plus' 'Zero n = n
 type instance Plus' ('Succ n) m = 'Succ (Plus' n m)
 
 testcase :: IO ()
-testcase =
-  print "chapter 2 passed"
+testcase = do
+  putStrLn "\n*** chapter 2\n"
+  putStrLn "\nchapter 2 passed"

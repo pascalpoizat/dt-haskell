@@ -169,6 +169,7 @@ aV4 = replicateInvis 1
 
 testcase :: IO ()
 testcase = do
+  putStrLn "\n*** chapter 3\n"
   print $ n3 + n2
   print aV1
   print aV2
@@ -176,5 +177,5 @@ testcase = do
   print aV3
   print aV4
   print $ lengthIrrel aV4
-  print "chapter 3 failed"
+  putStrLn "\nchapter 3 failed"
 
