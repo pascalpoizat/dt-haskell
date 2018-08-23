@@ -25,7 +25,7 @@
 {-# OPTIONS_GHC -Wunticked-promoted-constructors #-}
 {-# OPTIONS_GHC -Wunused-type-patterns           #-}
 
-module Sandboxes.RAE1.Chapter7 where
+module Sandboxes.RAE3.Chapter7 where
 
 import           Data.Kind                      ( Type )
 import           Prelude                 hiding ( (+) )
@@ -39,7 +39,7 @@ import           Prelude                 hiding ( (+) )
 
 --
 -- foralls sometime cause parsing errors (hlint), see Proxy
--- inconclusive (my solutions for missing things are they ok?) -> skip to RAE2
+-- inconclusive (are my solutions for missing things ok?) -> skip to other references
 --
 
 --
@@ -135,5 +135,5 @@ instance Typeable Nat where
 
 testcase :: IO ()
 testcase = do
-  print "RAE1, chapter 7 inconclusive"
+  print "chapter 7 inconclusive"
 

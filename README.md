@@ -5,7 +5,7 @@ Some experiments with dependent types in Haskell.
 
 This includes trying to write in Haskell some of the [examples and exercices in the Idris book](https://github.com/pascalpoizat/idris-book).
 
-**Remark:** this is a very ongoing work. The current entry point is [`Sandboxes.RAE2`](src/Sandboxes/RAE2.hs).
+**Remark:** this is a very ongoing work. The current entry point is [`Sandboxes.RAE1`](src/Sandboxes/RAE1).
 
 ## Contents
 
@@ -25,8 +25,9 @@ To make experiments we use different sandboxes based on different approaches.
 
 - **RAEx** is R. Eisenberg line of work
 
-	- **RAE1** based on [R-A1] (inconclusive)
-	- **RAE2** based on [V1] &leftarrow; current work, see [`Sandboxes.RAE2`](src/Sandboxes/RAE2.hs)
+	- **RAE1** based on [R-O2, R-O3, L1] &leftarrow; current work, see [`Sandboxes.RAE1`](src/Sandboxes/RAE1)
+	- **RAE2** based on [V1]
+	- **RAE3** based on [R-A1] (inconclusive, to be read again after RAE1-RAE2)
 	
 ## References
 
@@ -44,6 +45,8 @@ To make experiments we use different sandboxes based on different approaches.
 #### Other<!-- omit in toc -->
 
 - [R-O1] [Adding dependent types to Haskell](https://ghc.haskell.org/trac/ghc/wiki/DependentHaskell), a page of the GHC trac with information and references.
+- [R-O2] [Dependently Typed Programming with Singletons](https://cs.brynmawr.edu/~rae/papers/2012/singletons/paper.pdf) by R. A. Eisenberg and S. Weirich, Haskell Symposium (2012)
+- [R-03] [Promoting Functions to Type Families in Haskell](https://cs.brynmawr.edu/~rae/papers/2014/promotion/promotion.pdf) by R. A. Eisenberg and J. Stolarek, Haskell Symposium (2014)
 
 ### Videos<!-- omit in toc -->
 

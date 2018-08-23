@@ -11,7 +11,7 @@
 {-# OPTIONS_GHC -Wunticked-promoted-constructors #-}
 {-# OPTIONS_GHC -Wunused-type-patterns           #-}
 
-module Sandboxes.RAE1.Chapter2
+module Sandboxes.RAE3.Chapter2
 where
 
 import           Data.Kind                (Constraint)
@@ -202,4 +202,4 @@ type instance Plus' ('Succ n) m = 'Succ (Plus' n m)
 
 testcase :: IO ()
 testcase =
-  print "RAE1, chapter 2 passed"
+  print "chapter 2 passed"

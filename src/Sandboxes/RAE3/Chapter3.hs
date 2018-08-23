@@ -25,7 +25,7 @@
 {-# OPTIONS_GHC -Wunticked-promoted-constructors #-}
 -- {-# OPTIONS_GHC -Wunused-type-patterns           #-}
 
-module Sandboxes.RAE1.Chapter3 where
+module Sandboxes.RAE3.Chapter3 where
 
 import           Data.Kind          (Type)
 import           Data.Singletons.TH
@@ -176,5 +176,5 @@ testcase = do
   print aV3
   print aV4
   print $ lengthIrrel aV4
-  print "RAE1, chapter 3 failed (skipped to chapter 7)"
+  print "chapter 3 failed"
 
