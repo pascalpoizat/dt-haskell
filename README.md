@@ -5,7 +5,7 @@ Some experiments with dependent types in Haskell.
 
 This includes trying to write in Haskell some of the [examples and exercices in the Idris book](https://github.com/pascalpoizat/idris-book).
 
-**Remark:** this is a very ongoing work. The current entry point is [`Sandboxes.RAE1`](src/Sandboxes/RAE1).
+**Remark:** this is a very ongoing work. The current entry point is [`Sandboxes.RAE2`](src/Sandboxes/RAE2.hs).
 
 ## Contents
 
@@ -21,22 +21,29 @@ To make experiments we use different sandboxes based on different approaches.
 
 - **HI** is H. Ishii line of work
 
-	based on [R2]
+	based on [R-S2]
 
 - **RAEx** is R. Eisenberg line of work
 
-	- **RAE1** based on [R3] &leftarrow; current work, see [`Sandboxes.RAE1`](src/Sandboxes/RAE1)
-	- **RAE2** based on [V1]
+	- **RAE1** based on [R-A1] (inconclusive)
+	- **RAE2** based on [V1] &leftarrow; current work, see [`Sandboxes.RAE2`](src/Sandboxes/RAE2.hs)
 	
 ## References
 
 ### Reading<!-- omit in toc -->
 
+#### Starter<!-- omit in toc -->
 
-- [R1] [Basic Type Level Programming in Haskell](http://www.parsonsmatt.org/2017/04/26/basic_type_level_programming_in_haskell.html), by M. Parsons (2017)
-- [R2] [Dependent Types in Haskell, Part I](https://www.schoolofhaskell.com/user/konn/prove-your-haskell-for-great-safety/dependent-types-in-haskell) by H. Ishii (2014)
-- [R3] [Dependent Types in Haskell: Theory and Practice](https://repository.brynmawr.edu/cgi/viewcontent.cgi?article=1074&context=compsci_pubs) by R. A. Eisenberg, PhD thesis, University of Pennsylvania (2016) 
-- [R4] [Adding dependent types to Haskell](https://ghc.haskell.org/trac/ghc/wiki/DependentHaskell), a page of the GHC trac with information and references.
+- [R-S1] [Basic Type Level Programming in Haskell](http://www.parsonsmatt.org/2017/04/26/basic_type_level_programming_in_haskell.html), by M. Parsons (2017)
+- [R-S2] [Dependent Types in Haskell, Part I](https://www.schoolofhaskell.com/user/konn/prove-your-haskell-for-great-safety/dependent-types-in-haskell) by H. Ishii (2014)
+
+#### Advanced<!-- omit in toc -->
+
+- [R-A1] [Dependent Types in Haskell: Theory and Practice](https://repository.brynmawr.edu/cgi/viewcontent.cgi?article=1074&context=compsci_pubs) by R. A. Eisenberg, PhD thesis, University of Pennsylvania (2016) 
+
+#### Other<!-- omit in toc -->
+
+- [R-O1] [Adding dependent types to Haskell](https://ghc.haskell.org/trac/ghc/wiki/DependentHaskell), a page of the GHC trac with information and references.
 
 ### Videos<!-- omit in toc -->
 

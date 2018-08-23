@@ -1,26 +1,26 @@
----{-# LANGUAGE ConstraintKinds           #-}
+-- {-# LANGUAGE ConstraintKinds           #-}
 {-# LANGUAGE DataKinds            #-}
---{-# LANGUAGE DefaultSignatures         #-}
---{-# LANGUAGE EmptyCase                 #-}
---{-# LANGUAGE ExistentialQuantification #-}
---{-# LANGUAGE FlexibleContexts          #-}
---{-# LANGUAGE FlexibleInstances         #-}
+-- {-# LANGUAGE DefaultSignatures         #-}
+-- {-# LANGUAGE EmptyCase                 #-}
+-- {-# LANGUAGE ExistentialQuantification #-}
+-- {-# LANGUAGE FlexibleContexts          #-}
+-- {-# LANGUAGE FlexibleInstances         #-}
 {-# LANGUAGE GADTs                #-}
---{-# LANGUAGE InstanceSigs              #-}
---{-# LANGUAGE KindSignatures            #-}
---{-# LANGUAGE MultiParamTypeClasses     #-}
+-- {-# LANGUAGE InstanceSigs              #-}
+-- {-# LANGUAGE KindSignatures            #-}
+-- {-# LANGUAGE MultiParamTypeClasses     #-}
 {-# LANGUAGE NoImplicitPrelude    #-}
 {-# LANGUAGE PolyKinds            #-}
 {-# LANGUAGE RankNTypes           #-}
 {-# LANGUAGE ScopedTypeVariables  #-}
 {-# LANGUAGE StandaloneDeriving   #-}
 {-# LANGUAGE TemplateHaskell      #-}
---{-# LANGUAGE TypeApplications          #-}
+-- {-# LANGUAGE TypeApplications          #-}
 {-# LANGUAGE TypeFamilies         #-}
---{-# LANGUAGE TypeInType                #-}
+-- {-# LANGUAGE TypeInType                #-}
 {-# LANGUAGE TypeOperators        #-}
 {-# LANGUAGE UndecidableInstances #-}
---{-# LANGUAGE ViewPatterns              #-}
+-- {-# LANGUAGE ViewPatterns              #-}
 {-# OPTIONS_GHC -fprint-explicit-kinds           #-}
 {-# OPTIONS_GHC -Wunticked-promoted-constructors #-}
 -- {-# OPTIONS_GHC -Wunused-type-patterns           #-}
@@ -44,6 +44,8 @@ import           Prelude            hiding ((+), replicate)
 -- To have + on vector sizes:
 -- - either we can define a type family for :+: and use :+: instead of '+
 -- - or we need Data.Singletons to derive '+ from +
+--
+--  -Wunused-type-patterns is not practical with singletons
 --
 -- SOLUTIONS OF THE THESIS (YELLOW EXAMPLES) = ??
 --
@@ -174,5 +176,5 @@ testcase = do
   print aV3
   print aV4
   print $ lengthIrrel aV4
-  print "RAE1, chapter 3 passed"
+  print "RAE1, chapter 3 failed (skipped to chapter 7)"
 
