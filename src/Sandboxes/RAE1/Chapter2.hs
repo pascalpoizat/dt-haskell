@@ -29,6 +29,7 @@ import           Prelude                  hiding ((+))
 -- https://repository.brynmawr.edu/cgi/viewcontent.cgi?article=1074&context=compsci_pubs
 --
 
+--
 -- Possible required things, by order in the thesis:
 -- - TypeFamilies
 -- - DataKinds
@@ -43,6 +44,7 @@ import           Prelude                  hiding ((+))
 -- - (FunctionalDependencies presented but not required in the approach)
 -- - (MultiParamTypeClasses and FlexibleInstances not required in the examples without FD)
 -- - (UndecidableInstances not required in the examples without FD)
+--
 
 -- writing this requires TypeFamilies
 type family F1 a where
